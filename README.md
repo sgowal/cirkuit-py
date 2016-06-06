@@ -50,4 +50,14 @@ python server_main.py --port 12345 --host 192.168.0.2 --root ../client --circuit
 
 ## Screenshots
 
-![](https://raw.githubusercontent.com/sgowal/cirkuit-py/master/doc/screenshot_00.png)
+### Welcome screen
+
+![Welcome screen](https://raw.githubusercontent.com/sgowal/cirkuit-py/master/doc/screenshot_00.png)
+
+### Game lobby
+
+![Game lobby](https://raw.githubusercontent.com/sgowal/cirkuit-py/master/doc/screenshot_01.png)
+
+### Race
+
+![Race](https://raw.githubusercontent.com/sgowal/cirkuit-py/master/doc/screenshot_02.png)
