@@ -1,0 +1,348 @@
+canvas {
+  border: 0;
+  box-shadow: inset 0 0 5px 5px #fff;
+  background-color: #fff;
+  background-image: linear-gradient(to right, #ddd 1px, transparent 1px), linear-gradient(to bottom, #ddd 1px, transparent 1px);
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+}
+
+body {
+  font-family: "Helvetica Neue";
+  font-weight: 200;
+  font-size: 120%;
+  position: relative;
+  width: 100%;
+  display: block;
+}
+
+body > *  {
+  margin: auto;
+  width: 610px;
+  display: block;
+  overflow: auto;
+}
+
+body > script {
+  display: none
+}
+
+h1 {
+  font-weight: 200;
+  margin-bottom: 30px;
+}
+
+h2 {
+  font-weight: 200;
+}
+
+input {
+  border: 0;
+  background: transparent;
+  border-bottom: 2px solid #aaa;
+  width: 200px;
+  margin-left: 30;
+  margin-right: 30;
+  font-size:120%;
+}
+
+.select-style {
+  font-size:150%;
+  border: 1px solid #ccc;
+  width: 120px;
+  border-radius: 3px;
+  overflow: hidden;
+  background: #fafafa url("arrowdown.gif") no-repeat 90% 50%;
+}
+
+.select-style select {
+  padding: 5px 8px;
+  width: 130%;
+  border: none;
+  box-shadow: none;
+  background: transparent;
+  background-image: none;
+  -webkit-appearance: none;
+}
+
+.select-style select:focus {
+  outline: none;
+}
+
+input:focus{
+  outline: 0;
+  border-bottom: 2px solid black;
+}
+
+td {
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+table {
+  width: 500px;
+}
+
+#list_games_table_table {
+  margin: 0;
+  padding: 0;
+  -moz-border-radius-bottomleft:18px;
+  -webkit-border-bottom-left-radius:18px;
+  border-bottom-left-radius:18px;
+  -moz-border-radius-bottomright:18px;
+  -webkit-border-bottom-right-radius:18px;
+  border-bottom-right-radius:18px;
+  -moz-border-radius-topright:18px;
+  -webkit-border-top-right-radius:18px;
+  border-top-right-radius:18px;
+  -moz-border-radius-topleft:18px;
+  -webkit-border-top-left-radius:18px;
+  border-top-left-radius:18px;
+  border: 1px solid #000000;
+  border-spacing: 0;
+}
+
+#list_games_table_table tr:last-child td:last-child {
+  -moz-border-radius-bottomright:18px;
+  -webkit-border-bottom-right-radius:18px;
+  border-bottom-right-radius:18px;
+}
+
+#list_games_table_table tr:first-child td:first-child {
+  -moz-border-radius-topleft:18px;
+  -webkit-border-top-left-radius:18px;
+  border-top-left-radius:18px;
+}
+
+#list_games_table_table tr:first-child td:last-child {
+  -moz-border-radius-topright:18px;
+  -webkit-border-top-right-radius:18px;
+  border-top-right-radius:18px;
+}
+
+#list_games_table_table tr:last-child td:first-child{
+  -moz-border-radius-bottomleft:18px;
+  -webkit-border-bottom-left-radius:18px;
+  border-bottom-left-radius:18px;
+}
+
+#list_games_table_table tr:nth-child(odd) {
+  background-color:#b5b5b5;
+}
+
+#list_games_table_table tr:nth-child(even) {
+  background-color:#ffffff;
+}
+
+#list_games_table_table td{
+  vertical-align:middle;
+  border:1px solid #000000;
+  border-width:0 1px 1px 0;
+  text-align:center;
+  padding:10;
+  font-size: 90%;
+  color:#000000;
+}
+
+#list_games_table_table tr:last-child td{
+  border-width: 0 1px 0 0;
+}
+
+#list_games_table_table tr td:last-child{
+  border-width: 0 0 1px 0;
+}
+
+#list_games_table_table tr:last-child td:last-child{
+  border-width: 0 0 0 0;
+}
+
+#list_games_table_table tr:first-child td{
+  background-color:#4f4f4f;
+  border:0 solid #000000;
+  text-align:center;
+  border-width:0 0 1px 1px;
+  font-size: 90%;
+  font-weight:bold;
+  color:#ffffff;
+}
+
+#list_games_table_table tr:first-child:hover td{
+  background-color:#4f4f4f;
+}
+
+#list_games_table_table tr:first-child td:first-child{
+  border-width:0 0 1px 0;
+}
+
+#list_games_table_table tr:first-child td:last-child{
+  border-width:0 0 1px 1px;
+}
+
+button {
+  background-color: #7892c2;
+  -moz-border-radius: 18px;
+  -webkit-border-radius: 18px;
+  border-radius: 18px;
+  border: 1px solid #4e6096;
+  display: inline-block;
+  cursor: pointer;
+  color: #ffffff;
+  padding: 7px 20px;
+  text-decoration: none;
+  font-size: 90%;
+}
+
+button:hover {
+  background-color: #476e9e;
+}
+
+button:active {
+  position: relative;
+  top: 1px;
+}
+
+#game_lobby_players {
+  list-style-type: none;
+  overflow: auto;
+}
+
+#game_lobby_players li {
+  float: left;
+  display: block;
+  margin-right: 20px;
+  padding: 0;
+  text-align: center;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  border: 2px solid #000;
+  color: #fff;
+}
+
+#game_lobby_players li:nth-child(1) {
+  background: #1E90FF;
+}
+
+#game_lobby_players li:nth-child(2) {
+  background: #DC143C;
+}
+
+#game_lobby_players li:nth-child(3) {
+  background: #90EE90;
+}
+
+#game_lobby_players li:nth-child(4) {
+  background: #FFC0CB;
+}
+
+.player_name {
+  font-size: 50px;
+  font-weight: 600;
+  text-transform: capitalize;
+  width: 100%;
+}
+
+.info_text {
+  font-size: 70%;
+}
+
+.alert_text {
+  color: #f00;
+}
+
+#overlay {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  background: #fff;
+  opacity: 0.9;
+  filter: alpha(opacity=80);
+  transition: opacity .5s ease-in-out;
+  -moz-transition: opacity .5s ease-in-out;
+  -webkit-transition: opacity .5s ease-in-out;
+}
+
+#loading {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: -100px 0 0 -130px;
+}
+
+#loading_info {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: 10px 0 0 -110px;
+}
+
+#overlay_disconnected {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  background: #fff;
+  opacity: 0.9;
+  filter: alpha(opacity=80);
+  transition: opacity .5s ease-in-out;
+  -moz-transition: opacity .5s ease-in-out;
+  -webkit-transition: opacity .5s ease-in-out;
+}
+
+#disconnected {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  max-width: 200px;
+  max-height: 260px;
+  margin: -150px 0 0 -130px;
+  opacity: 1.0;
+}
+
+#disconnected_info {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: 10px 0 0 -110px;
+}
+
+#circuit_info {
+  font-size: 70%;
+  position: absolute;
+  background-color: #fff;
+  border: 1px solid #000;
+  padding: 5px;
+  border-radius: 18px;
+  cursor: move;
+  top: 30px;
+  left: 55%;
+}
+
+.player_ranking {
+  list-style-type: none;
+  padding-left: 25px;
+  max-width: 570px;
+}
+
+.player_ranking li {
+  counter-increment: step-counter;
+}
+
+.player_ranking li::before {
+  content: counter(step-counter);
+  margin-right: 5px;
+  margin-left: -25px;
+  font-size: 80%;
+  background-color: #7892c2;
+  color: white;
+  font-weight: bold;
+  padding: 2px 6px;
+  border-radius: 3px;
+}

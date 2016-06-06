@@ -1,0 +1,6 @@
+innerBorder = 197,175,328,171,330,286,204,299
+name = Square
+numLaps = 2
+maximumSpeed = 5
+startingLine = 219,235,105,235
+outerBorder = 119,118,379,106,398,348,125,364

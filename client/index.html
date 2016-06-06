@@ -1,0 +1,125 @@
+<html>
+<head>
+  <title>CirKuit 2D</title>
+  <meta name="viewport" content="width=600, initial-scale=1, maximum-scale=1" />
+  <link href="style.css" media="all" rel="stylesheet" type="text/css" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  <script src="jquery.mobile-events.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
+</head>
+<body>
+<h1 id="title">Welcome to CirKuit 2D<!-- Modified by engine.js --></h1>
+
+<div id="user_info">
+  <label>Username</label>
+  <input type="text" id="username" value="" placeholder="username" maxlength="15" />
+  <button id="register_user_button">Register</button><br/>
+  <div id="username_error" class="alert_text"></div>
+</div>
+
+<div id="list_games">
+  <h2>Ongoing games</h2>
+  <div id="list_games_table">
+    <table id="list_games_table_table"></table>
+  </div>
+</div>
+
+<div id="create_game">
+  <h2>Create a new game</h2>
+  <div id="create_game_form">
+    <table>
+      <tr>
+        <td><label>Number of players</label></td>
+        <td>
+          <div class="select-style">
+            <select id="max_players">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+            </select>
+          </div>
+        </td>
+        <td rowspan="2"><button id="create_game_button">Create</button></td>
+      </tr>
+      <tr>
+        <td><label>Circuit</label></td>
+        <td>
+          <div class="select-style">
+            <select id="circuit_name">
+              <option value="Patatoid">Patatoid</option>
+              <!-- Filled by engine.js -->
+            </select>
+          </div>
+        </td>
+      </tr>
+  </table>
+  </div>
+</div>
+
+<div id="game_lobby" style="display: none;">
+  <h2>Waiting for other players...</h2>
+  <div id="game_lobby_info">
+    <ul id="game_lobby_players">
+      <!-- Filled by engine.js -->
+    </ul>
+    <ul id="game_lobby_news">
+      <!-- Filled by engine.js -->
+    </ul>
+  </div>
+  <table>
+    <tr>
+      <td></td>
+      <td></td>
+      <td><button id="game_lobby_leave">Leave lobby</button></td>
+    </tr>
+    <tr class="game_lobby_admin_row">
+      <td><label>Computer level</label></td>
+      <td>
+        <div class="select-style">
+          <select id="computer_ai">
+            <option value="AStarPlayer">AStarPlayer</option>
+            <!-- Filled by engine.js -->
+          </select>
+        </div>
+      </td>
+      <td><button id="game_lobby_start">Start game</button></td>
+    </tr>
+    <tr class="game_lobby_admin_row"><td class="info_text" colspan="3">You can start the game immediately and fill the lobby with computer players.</td><tr/>
+  </table>
+</div>
+
+<div id="game_play" style="display: none;">
+  <div id="circuit_info" unselectable="on" onselectstart="return false;">
+    <div id="game_play_status">Downloading race track...</div>
+    <div id="game_play_track_info"><!-- Filled by engine.js --></div>
+
+    <ol class="player_ranking" id="game_play_players">
+      <!-- Filled by engine.js -->
+    </ol>
+
+    <button id="game_play_leave">Leave game</button>
+  </div>
+
+  <div id="canvas_container">
+    <canvas id="circuit_canvas" width="600" height="580"></canvas>
+  </div>
+  <!-- Pre-rendering -->
+  <canvas id="prerender_canvas" width="600" height="580" style="display: none;"></canvas>
+</div>
+
+<div id="overlay" style="display: none;">
+  <img id="loading" src="loading.gif"></img>
+  <div id="loading_info"><!-- Filled by engine.js --></div>
+</div>
+
+<div id="overlay_disconnected" style="display: none;">
+  <img id="disconnected" src="disconnected.png"></img>
+  <div id="disconnected_info">Disconnected. <button id="reload_page">Reload</button></div>
+</div>
+
+<div id="measurement" style="height: 1in; left: -100%; position: absolute; top: -100%; width: 1in;"></div>
+<script src="engine.js" type="text/javascript"></script>
+</body>
+</html>
