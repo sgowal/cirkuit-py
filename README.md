@@ -47,3 +47,7 @@ python server_main.py --port 12345 --host 192.168.0.2 --root ../client --circuit
 7. They need to enter a username and they should be able to see that there is a ongoing game
 8. They can now join that game
 9. And you can click start
+
+## Screenshots
+
+![](https://raw.githubusercontent.com/sgowal/cirkuit-py/master/doc/screenshot_00.png)
