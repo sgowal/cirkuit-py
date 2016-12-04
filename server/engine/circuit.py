@@ -1,10 +1,19 @@
+from __future__ import print_function
+
 import collections
+import copy
 import math
 import numpy as np
 import os
 from shapely import geometry
 from shapely import prepared
 import sys
+
+# xrange compatibility.
+try:
+    xrange
+except NameError:
+    xrange = range
 
 
 class Error(Exception):
@@ -41,14 +50,14 @@ STATUS_DISCONNECTED = 3
 State = collections.namedtuple('State', ['xy', 'yaw', 'speed', 'round', 'lap', 'distance_left', 'status'])
 
 
-class Circuit:
+class Circuit(object):
   circuit_data = None
 
   @staticmethod
   def SetPath(path):
     # List all circuit in the current folder and load them.
     for filename in (os.path.join(path, f) for f in os.listdir(path) if os.path.isfile(os.path.join(path, f)) and f.endswith('.ckt')):
-      print 'Loading:', filename
+      print('Loading:', filename)
       with open(filename) as fp:
         configuration = dict(l.strip().split(' = ', 1) for l in fp.readlines() if ' = ' in l)
         name = configuration['name']
@@ -99,6 +108,16 @@ class Circuit:
     self.onroad_cache = {}
     self.crossing_cache = {}
     self.next_points_cache = {}
+
+  def __getstate__(self):
+    # self.drivable_road cannot be pickled.
+    state = copy.copy(self.__dict__)
+    state['drivable_road'] = None
+    return state
+
+  def __setstate__(self, state):
+    self.__dict__ = state
+    self.drivable_road = prepared.prep(self.raw_drivable_road)
 
   def Contains(self, point):
     return self.drivable_road.contains(geometry.Point(point))

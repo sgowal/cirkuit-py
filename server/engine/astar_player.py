@@ -1,3 +1,5 @@
+from __future__ import print_function
+
 import collections
 import heapq
 import math
@@ -121,8 +123,8 @@ class AStarPlayer(ComputerPlayer):
         came_from[next_state] = current
     # We are done.
     end_time = time.clock()
-    print 'Best final state with score =', best_score, 'found in %.2f ms' % ((end_time - start_time) * 1000.)
-    print 'Explored', explored_states, 'states.'
+    print('Best final state with score =', best_score, 'found in %.2f ms' % ((end_time - start_time) * 1000.))
+    print('Explored', explored_states, 'states.')
     if best_state is None:
       return random.choice(xrange(len(self.allowed_moves)))
 
@@ -140,10 +142,10 @@ class AStarPlayer(ComputerPlayer):
         current = best_state
         path = collections.deque([current])
         while current in came_from:
-          print 'Backtrack:', current, '- g_score =', g_score[current]
+          print('Backtrack:', current, '- g_score =', g_score[current])
           current = came_from[current]
           path.appendleft(current)
-        print 'Backtrack:', current, '- g_score =', g_score[current]
+        print('Backtrack:', current, '- g_score =', g_score[current])
         path_points = np.array([s.xy for s in path])
         plt.plot(path_points[:, 0], path_points[:, 1], 'g', linewidth=2)
       plt.axis('equal')
@@ -179,6 +181,6 @@ if __name__ == '__main__':
   p = AStarPlayer()
   p.SetAllowedMoves(circuit, [])
   index = p.Play(circuit, [], plot=args.plot)
-  print 'Best index:', index
-  print 'Re-running a second time to test caching...'
+  print('Best index:', index)
+  print('Re-running a second time to test caching...')
   index = p.Play(circuit, [], plot=False)

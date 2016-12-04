@@ -1,3 +1,5 @@
+from __future__ import print_function
+
 import time
 import threading
 
@@ -130,7 +132,7 @@ def RegisterPlayer(cls):
   if cls.__name__ == 'ComputerPlayer':
     return
   computer_player_registry[cls.__name__] = cls
-  print 'Registered', cls.__name__, 'as computer player.'
+  print('Registered', cls.__name__, 'as computer player.')
 
 
 def CreatePlayer(cls_name):

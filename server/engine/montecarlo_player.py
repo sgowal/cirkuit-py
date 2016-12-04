@@ -1,14 +1,32 @@
+from __future__ import print_function
+
 import multiprocessing
 import random
+import time
+
+# For test (ugly as hell).
+if __name__ == '__main__':
+  import sys
+  sys.path.append('..')
+  sys.path.append('../util')
+  import argparse
+  import circuit_analyzer
+  from circuit import Circuit
 
 from circuit import STATUS_CRASHED
 from circuit import STATUS_FINISHED
 from player import ComputerPlayer
 
+# xrange compatibility.
+try:
+    xrange
+except NameError:
+    xrange = range
+
 
 # A depth of 2 will expand the moves 3 times (0 -> direct moves, 1 -> lookahead of 1 move, ...)
 _MAX_DEPTH = 6
-_NUM_RANDOM_PLAY_PER_THREAD = 200
+_NUM_RANDOM_PLAY_PER_THREAD = 400
 _NUM_THREADS = 8
 _MINIMUM_SCORE = -1e6
 _CRASH_SCORE = 1e6
@@ -21,6 +39,7 @@ class MonteCarloPlayer(ComputerPlayer):
 
   def Play(self, circuit, players):
     # Run multiple threads and pick the best.
+    start_time = time.clock()
     if _NUM_THREADS > 1:
       pool = multiprocessing.Pool(processes=_NUM_THREADS)
       results = pool.map(_GetBestMove, [(self.allowed_moves, circuit)] * _NUM_THREADS)
@@ -28,7 +47,9 @@ class MonteCarloPlayer(ComputerPlayer):
       pool.terminate()
     else:
       score, move_index = _GetBestMove((self.allowed_moves, circuit))
-    print 'Best score found with depth %d:' % _MAX_DEPTH, score
+    end_time = time.clock()
+    print('Best final state with score =', score, 'found in %.2f ms' % ((end_time - start_time) * 1000.))
+    print('Best score found with depth %d:' % _MAX_DEPTH, score)
     return move_index
 
 
@@ -65,3 +86,19 @@ def _GetBestMove(argument):
       best_index = index
       best_score = score
   return best_score, best_index
+
+
+if __name__ == '__main__':
+  parser = argparse.ArgumentParser()
+  parser.add_argument("--circuit_directory", metavar='DIRECTORY', type=str, required=False, help="The directory where the circuit files are located.")
+  parser.add_argument("--circuit_name", metavar='NAME', type=str, required=False, help="The name of the circuit to analyze.")
+  args = parser.parse_args()
+  if args.circuit_directory:
+    Circuit.SetPath(args.circuit_directory)
+  circuit = circuit_analyzer.GetAnalyzableCircuit(args.circuit_name)
+  p = MonteCarloPlayer()
+  p.SetAllowedMoves(circuit, [])
+  index = p.Play(circuit, [])
+  # print 'Best index:', index
+  # print 'Re-running a second time to test caching...'
+  index = p.Play(circuit, [])

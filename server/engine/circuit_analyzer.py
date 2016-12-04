@@ -32,7 +32,7 @@ def GetAnalyzer(name=None, plot=False):
 
 
 def GetAnalyzableCircuit(name=None):
-  print 'Loading circuit:', name
+  print('Loading circuit:', name)
   circuit_analyzer = GetAnalyzer(name)
   circuit_analyzer.circuit.SetAnalyzer(circuit_analyzer)
   return circuit_analyzer.circuit
@@ -90,7 +90,7 @@ class CircuitAnalyzer(object):
       polys_center.append(geometry.Point(np.mean(points[triangle], axis=0)))
       if finish_triangle_index is None and polys[-1].contains(geometry.Point(finish_point)):
         finish_triangle_index = i
-    valid = np.array(map(polygon.contains, polys_center)).astype(bool)
+    valid = np.array(list(map(polygon.contains, polys_center))).astype(bool)
     assert finish_triangle_index is not None, 'Ooops'
     # Map each point on the grid to a triangle.
     bounds = tuple(int(b) for b in self.circuit.drivable_road_bounds)
@@ -133,12 +133,12 @@ class CircuitAnalyzer(object):
     try:
       self.distances = {}
       self.max_distance = 0
-      for point, start_triangle_index in point_to_triangle.iteritems():
+      for point, start_triangle_index in point_to_triangle.items():
         self.distances[point] = _FindDistance(np.array(point), start_triangle_index, finish_point, triangle_tree) + _EXTRA_LENGTH
         self.max_distance = max(self.max_distance, self.distances[point])
     except KeyError as e:
       if plot:
-        print 'Error while processing circuit, but trying to continue anyways...'
+        print('Error while processing circuit, but trying to continue anyways...')
       else:
         raise e
 
@@ -148,7 +148,7 @@ class CircuitAnalyzer(object):
         x = []
         y = []
         z = []
-        for k, v in self.distances.iteritems():
+        for k, v in self.distances.items():
           x.append(k[0])
           y.append(k[1])
           z.append(v)
@@ -263,7 +263,7 @@ class Funnel(object):
     return self.shortest_path
 
   def PrintFunnels(self):
-    print [p.id for p in self.left_funnel], [p.id for p in self.right_funnel]
+    print([p.id for p in self.left_funnel], [p.id for p in self.right_funnel])
 
   def _AddGate(self, gate):
     diag_right = gate.right
